@@ -4,9 +4,19 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>我的牌组</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addDeck()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content id="screen">
+<div class="decks">
+  <ion-button (click)="deck.id" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
+    [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}">
+    {{ deck.name }}
+  </ion-button>
+</div>
 </ion-content>
