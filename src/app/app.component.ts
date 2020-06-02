@@ -14,17 +14,17 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: '我的牌组',
-      url: '/folder/myDeck',
+      url: '/v1/folder/my-deck',
       icon: 'list',
     },
     {
       title: '牌组仓库',
-      url: '/folder/deck',
+      url: '/v1/folder/decks',
       icon: 'briefcase',
     },
     {
       title: '统计',
-      url: '/folder/statistics',
+      url: '/v1/folder/statistics',
       icon: 'stats-chart',
     },
   ]
