@@ -76,6 +76,7 @@ export class MyDeckPage implements OnInit {
   // 学习牌组
   learnDeck(deckId: number) {
     // this.httpService.getCardList()
+    this.msgService.presentToast('开始学习卡片')
   }
 
   // 添加牌组
