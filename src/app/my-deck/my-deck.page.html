@@ -14,9 +14,9 @@
 
 <ion-content id="screen">
 <div class="decks">
-  <ion-button (click)="deck.id" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
-    [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}">
-    {{ deck.name }}
-  </ion-button>
+  <ion-button (click)="learnDeck(deck.deckId)" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
+  [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}" on-hold="deckMenu(deck.deckId)" mode="md">
+  {{ deck.deckName }}
+</ion-button>
 </div>
 </ion-content>
