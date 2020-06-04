@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="header">
+    iFlashcard
+  </div>
 
+  <!-- 登录的输入框 -->
+  <div class="input-group">
+    <div class="input">
+      <ion-input
+        type="text"
+        placeholder="请输入用户名"
+        maxlength="11"
+        inputmode="numeric"
+        [(ngModel)]="username"
+      ></ion-input>
+    </div>
+    <div class="input">
+      <ion-input
+        type="password"
+        placeholder="请输入密码"
+        [(ngModel)]="password"
+        (keyup.enter)="login()"
+      ></ion-input>
+    </div>
+  </div>
+
+  <!-- 用户登录 -->
+  <div class="login-btn">
+    <ion-button
+      (click)="login()"
+      expand="block"
+      fill="clear"
+      mode="ios"
+    >
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>
