@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" mode='md'>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -14,8 +14,8 @@
 
 <ion-content id="screen">
 <div class="decks">
-  <ion-button (click)="learnDeck(deck.deckId)" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
-  [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}" on-hold="deckMenu(deck.deckId)" mode="md">
+  <ion-button (tap)="learnDeck(deck.deckId)" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
+  [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}" (press)="deckMenu(deck.deckId)" mode="md">
   {{ deck.deckName }}
 </ion-button>
 </div>
