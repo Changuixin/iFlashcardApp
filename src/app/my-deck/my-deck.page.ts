@@ -57,7 +57,16 @@ export class MyDeckPage implements OnInit {
         {
           text: '修改牌组',
           icon: 'pencil',
-          handler: () => {},
+          handler: () => {
+            this.msgService.presentAlertPrompt(
+              '修改牌组',
+              '请输入牌组名称',
+              (res) => {
+                let newDeckName = res.data
+                this.modifyDeck(deckId, newDeckName)
+              }
+            )
+          },
         },
       ],
     })
@@ -65,14 +74,27 @@ export class MyDeckPage implements OnInit {
   }
 
   // 学习牌组
-  learnDeck() {
+  learnDeck(deckId: number) {
     // this.httpService.getCardList()
   }
 
   // 添加牌组
   addDeck() {
-    // this.httpService.addDeck()
-    // this.httpService.getDeckList()
+    this.msgService.presentAlertPrompt('添加牌组', '请输入牌组名称', (res) => {
+      let deckName = res.data
+      this.httpService.addDeck(deckName).subscribe(
+        (res) => {
+          if (res['meta']['status'] == '200') {
+            this.msgService.presentToast('添加成功', 2000, 'success')
+            return this.getDeckList()
+          }
+          this.msgService.presentToast('添加失败', 2000, 'danger')
+        },
+        () => {
+          this.msgService.presentToast('添加失败', 2000, 'danger')
+        }
+      )
+    })
   }
 
   // 删除牌组
@@ -85,7 +107,7 @@ export class MyDeckPage implements OnInit {
         }
         this.msgService.presentToast('删除失败', 2000, 'danger')
       },
-      (err) => {
+      () => {
         this.msgService.presentToast('删除失败', 2000, 'danger')
       }
     )
@@ -93,6 +115,17 @@ export class MyDeckPage implements OnInit {
 
   // 修改牌组名称
   modifyDeck(deckId: number, deckName: string) {
-    this.httpService.modifyDeck(deckId, deckName).subscribe()
+    this.httpService.modifyDeck(deckId, deckName).subscribe(
+      (res) => {
+        if (res['meta']['status'] == '200') {
+          this.msgService.presentToast('修改成功', 2000, 'success')
+          return this.getDeckList()
+        }
+        this.msgService.presentToast('修改失败', 2000, 'danger')
+      },
+      () => {
+        this.msgService.presentToast('修改失败', 2000, 'danger')
+      }
+    )
   }
 }
