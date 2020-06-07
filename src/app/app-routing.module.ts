@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'v1/folder/statistics',
     loadChildren: () => import('./statistics/statistics.module').then( m => m.StatisticsPageModule)
   },
+  {
+    path: 'v1/card/:deckId',
+    loadChildren: () => import('./card/card.module').then( m => m.CardPageModule)
+  },
 ]
 
 @NgModule({
