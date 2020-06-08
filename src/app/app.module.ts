@@ -9,6 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http'
+import { Keyboard } from '@ionic-native/keyboard/ngx'
+import { AppMinimize } from '@ionic-native/app-minimize/ngx'
+
 import 'hammerjs'
 
 @NgModule({
@@ -26,6 +29,8 @@ import 'hammerjs'
   providers: [
     StatusBar,
     SplashScreen,
+    Keyboard,
+    AppMinimize,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
