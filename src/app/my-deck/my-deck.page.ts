@@ -81,7 +81,7 @@ export class MyDeckPage implements OnInit {
 
   // 学习牌组
   learnDeck(deckId: number) {
-    this.msgService.presentToast('开始学习卡片')
+    this.msgService.presentToast('开始学习卡片', 1000)
     this.router.navigateByUrl(`/v1/card/${deckId}`)
   }
 
@@ -89,7 +89,6 @@ export class MyDeckPage implements OnInit {
   addDeck() {
     this.msgService.presentAlertPrompt('添加牌组', '请输入牌组名称', (res) => {
       let deckName = res.data
-      console.log(res)
 
       this.httpService.addDeck(deckName).subscribe(
         (res) => {
