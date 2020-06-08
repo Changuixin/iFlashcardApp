@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { MessageService } from '../service/message.service'
 import { HttpService } from '../service/http.service'
@@ -8,7 +8,7 @@ import { HttpService } from '../service/http.service'
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit {
   public username: string
   public password: string
 
@@ -17,6 +17,9 @@ export class LoginPage {
     public msgService: MessageService,
     public httpService: HttpService
   ) {}
+  ngOnInit(): void {
+    this.autoLogin()
+  }
 
   login() {
     if (this.username == null || this.username == '') {
@@ -28,10 +31,22 @@ export class LoginPage {
     this.httpService.login(this.username, this.password).subscribe((res) => {
       this.msgService.presentToast(res['meta']['msg'])
       if (res['meta']['status'] == '200') {
-        localStorage['username'] = res['data']['username']
+        localStorage['username'] = this.username
+        localStorage['password'] = this.password
         localStorage['userId'] = res['data']['userId']
         this.router.navigate(['/v1/folder/my-deck'])
       }
     })
+  }
+
+  autoLogin() {
+    this.httpService
+      .login(localStorage['username'], localStorage['password'])
+      .subscribe((res) => {
+        if (res['meta']['status'] == '200') {
+          localStorage['userId'] = res['data']['userId']
+          this.router.navigate(['/v1/folder/my-deck'])
+        }
+      })
   }
 }
