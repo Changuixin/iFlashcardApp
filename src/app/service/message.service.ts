@@ -43,7 +43,8 @@ export class MessageService {
     header: string,
     placeholder: string = '',
     confirmCallback: any = () => {},
-    cancelCallback: any = () => {}
+    cancelCallback: any = () => {},
+    defaultValue: string = null
   ) {
     const alert = await this.alertController.create({
       header: header,
@@ -52,6 +53,7 @@ export class MessageService {
           name: 'data',
           type: 'text',
           placeholder: placeholder,
+          value: defaultValue,
         },
       ],
       buttons: [
