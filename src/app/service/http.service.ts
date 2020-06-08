@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http'
   providedIn: 'root',
 })
 export class HttpService {
-  public baseUrl: string = 'http://localhost:8888'
+  public baseUrl: string = 'http://39.97.117.164:8889'
 
   constructor(private httpClient: HttpClient) {}
 
@@ -21,7 +21,7 @@ export class HttpService {
     formData.append('password', password)
 
     return this.httpClient.request('post', this.baseUrl + '/login', {
-      body:formData
+      body: formData,
     })
   }
 
@@ -31,7 +31,7 @@ export class HttpService {
    * @param userId
    */
   getDeckList(userId: number) {
-    return this.httpClient.request('get', `${this.baseUrl}/list/${userId}`)
+    return this.httpClient.request('get', this.baseUrl + `/deck/list/${userId}`)
   }
 
   /**
@@ -40,9 +40,16 @@ export class HttpService {
    * @param deckName 牌组名称
    */
   addDeck(deckName: string) {
-    return this.httpClient.request('post', this.baseUrl + '/deck', {
-      body: { deckName: deckName },
-    })
+    let formData = new FormData()
+    formData.append('deckName', deckName)
+
+    return this.httpClient.request(
+      'post',
+      this.baseUrl + '/deck/' + localStorage['userId'],
+      {
+        body: formData,
+      }
+    )
   }
 
   /**
@@ -52,8 +59,10 @@ export class HttpService {
    * @param userId 用户id
    */
   deleteDeck(deckId: number, userId: number) {
-    return this.httpClient.request('delete', `${this.baseUrl}/deck/${deckId}`, {
-      body: { userId: userId },
+    let formData = new FormData()
+    formData.append('userId', userId.toString())
+    return this.httpClient.request('delete', this.baseUrl + `/deck/${deckId}`, {
+      body: formData,
     })
   }
 
@@ -64,8 +73,11 @@ export class HttpService {
    * @param deckName 新的牌组名称
    */
   modifyDeck(deckId: number, deckName: string) {
-    return this.httpClient.request('put', `${this.baseUrl}/deck${deckId}`, {
-      body: { deckName: deckName },
+    let formData = new FormData()
+    formData.append('deckName', deckName)
+
+    return this.httpClient.request('put', this.baseUrl + `/deck/${deckId}`, {
+      body: formData,
     })
   }
 
@@ -76,10 +88,12 @@ export class HttpService {
    * @param userId 用户id：标记收藏的用户
    */
   collectDeck(deckId: number, userId: number) {
+    let formData = new FormData()
+    formData.append('userId', userId.toString())
     return this.httpClient.request(
       'post',
-      `${this.baseUrl}/deck/collect/${deckId}`,
-      { body: { userId: userId } }
+      this.baseUrl + `/deck/collect/${deckId}`,
+      { body: formData }
     )
   }
 
@@ -89,7 +103,7 @@ export class HttpService {
    * @param deckId 卡片所属的牌组
    */
   getCardList(deckId: number) {
-    return this.httpClient.request('get', `${this.baseUrl}/card/list/${deckId}`)
+    return this.httpClient.request('get', this.baseUrl + `/card/list/${deckId}`)
   }
 
   /**
@@ -100,8 +114,12 @@ export class HttpService {
    * @param deckId 牌组id：标记存放卡片的牌组
    */
   addCard(problem: string, answer: string, deckId: number) {
-    return this.httpClient.request('post', `${this.baseUrl}/card`, {
-      body: { problem: problem, answer: answer, deckId: deckId },
+    let formData = new FormData()
+    formData.append('problem', problem)
+    formData.append('answer', answer)
+    formData.append('deckId', deckId.toString())
+    return this.httpClient.request('post', this.baseUrl + `/card`, {
+      body: formData,
     })
   }
 
@@ -113,8 +131,12 @@ export class HttpService {
    * @param answer 卡片答案：背面
    */
   modifyCard(cardId: number, problem: string, answer: string) {
-    return this.httpClient.request('put', `${this.baseUrl}/card/${cardId}`, {
-      body: { problem: problem, answer: answer },
+    let formData = new FormData()
+    formData.append('problem', problem)
+    formData.append('answer', answer)
+
+    return this.httpClient.request('put', this.baseUrl + `/card/${cardId}`, {
+      body: formData,
     })
   }
 
@@ -124,7 +146,7 @@ export class HttpService {
    * @param cardId 卡片id
    */
   deleteCard(cardId: number) {
-    return this.httpClient.request('delete', `${this.baseUrl}/card/${cardId}`)
+    return this.httpClient.request('delete', this.baseUrl + `/card/${cardId}`)
   }
 
   /**
@@ -133,9 +155,12 @@ export class HttpService {
    * @param cardId 卡片id
    * @param flag 卡片状态标志
    */
-  public uploadCardStatus(cardId: number, flag: boolean) {
-    return this.httpClient.request('post', `${this.baseUrl}/card/flag`, {
-      body: { cardId: cardId, flag: flag },
+  public submitCardStatus(cardId: number, flag: boolean) {
+    let formData = new FormData()
+    formData.append('flag', flag.toString())
+
+    return this.httpClient.request('post', this.baseUrl + `/card/flag/${cardId}`, {
+      body: formData,
     })
   }
 }
