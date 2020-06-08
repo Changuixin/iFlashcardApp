@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http'
   providedIn: 'root',
 })
 export class HttpService {
-  public baseUrl: string = 'localhost:8080'
+  public baseUrl: string = 'http://localhost:8888'
 
   constructor(private httpClient: HttpClient) {}
 
@@ -16,11 +16,12 @@ export class HttpService {
    * @param {string} password
    */
   login(username: string, password: string) {
+    let formData = new FormData()
+    formData.append('username', username)
+    formData.append('password', password)
+
     return this.httpClient.request('post', this.baseUrl + '/login', {
-      body: {
-        username: username,
-        password: password,
-      },
+      body:formData
     })
   }
 
