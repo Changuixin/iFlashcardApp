@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { HttpService } from '../service/http.service'
 import { MessageService } from '../service/message.service'
 import { ActionSheetController } from '@ionic/angular'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-my-deck',
@@ -28,7 +29,8 @@ export class MyDeckPage implements OnInit {
   constructor(
     public httpService: HttpService,
     public msgService: MessageService,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -38,14 +40,16 @@ export class MyDeckPage implements OnInit {
   // 获取牌组列表
   getDeckList() {
     this.httpService.getDeckList(localStorage['userId']).subscribe((res) => {
-      if (res['msg'] == '200') {
+      console.log(res)
+
+      if (res['meta']['status'] == '200') {
         return (this.deckList = res['data'])
       }
-      return (this.deckList = [])
+      return this.msgService.presentToast('获取牌组信息失败', 2000, 'danger')
     })
   }
 
-  async deckMenu(deckId: number) {
+  async deckMenu(deckId: number, deckName: string) {
     const actionSheet = await this.actionSheetController.create({
       buttons: [
         {
@@ -64,7 +68,9 @@ export class MyDeckPage implements OnInit {
               (res) => {
                 let newDeckName = res.data
                 this.modifyDeck(deckId, newDeckName)
-              }
+              },
+              () => {},
+              deckName
             )
           },
         },
@@ -75,14 +81,16 @@ export class MyDeckPage implements OnInit {
 
   // 学习牌组
   learnDeck(deckId: number) {
-    // this.httpService.getCardList()
     this.msgService.presentToast('开始学习卡片')
+    this.router.navigateByUrl(`/v1/card/${deckId}`)
   }
 
   // 添加牌组
   addDeck() {
     this.msgService.presentAlertPrompt('添加牌组', '请输入牌组名称', (res) => {
       let deckName = res.data
+      console.log(res)
+
       this.httpService.addDeck(deckName).subscribe(
         (res) => {
           if (res['meta']['status'] == '200') {
