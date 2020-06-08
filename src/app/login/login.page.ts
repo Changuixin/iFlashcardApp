@@ -19,6 +19,12 @@ export class LoginPage {
   ) {}
 
   login() {
+    if (this.username == null || this.username == '') {
+      return this.msgService.presentToast('用户名未填写', 2000, 'danger')
+    }
+    if (this.password == null || this.password == '') {
+      return this.msgService.presentToast('密码未填写', 2000, 'danger')
+    }
     this.httpService.login(this.username, this.password).subscribe((res) => {
       this.msgService.presentToast(res['meta']['msg'])
       if (res['meta']['status'] == '200') {
