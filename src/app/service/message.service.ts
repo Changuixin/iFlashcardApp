@@ -27,6 +27,7 @@ export class MessageService {
       position: 'bottom',
       color: color,
       duration: duration,
+      animated: false,
     })
     toast.present()
   }
