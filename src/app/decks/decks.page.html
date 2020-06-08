@@ -9,9 +9,9 @@
 
 <ion-content>
   <div class="decks">
-    <ion-button mode="md" (click)="flip(deck.id)" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
+    <ion-button mode="md" (click)="flip(deck.deckId)" *ngFor="let deck of commonDeckList" expand="full" fill="clear" class="cell"
       [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}">
-      <ion-icon class="icon" [name]="isCollection()? 'heart':'heart-outline'"></ion-icon> {{ deck.name }}
+      <ion-icon class="icon" [name]="isCollection(deck.deckId)? 'heart':'heart-outline'"></ion-icon> {{ deck.deckName }}
     </ion-button>
   </div>
 </ion-content>
