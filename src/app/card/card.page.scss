@@ -1,0 +1,22 @@
+.btn-position {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.isHide {
+  display: none;
+}
+
+.btns {
+  display: flex;
+}
+
+.forget-btn {
+  margin-right: 20px;
+}
+
+.remember-btn {
+  margin-left: 20px;
+}
