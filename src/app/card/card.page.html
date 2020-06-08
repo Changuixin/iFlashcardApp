@@ -1,9 +1,54 @@
-<ion-header>
+<ion-header mode='md'>
   <ion-toolbar>
-    <ion-title>card</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/v1/folder/my-deck'></ion-back-button>
+    </ion-buttons>
+    <ion-title>卡片学习</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteCard()">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+      <ion-button (click)="editCard()">
+        <ion-icon slot="icon-only" name="pencil"></ion-icon>
+      </ion-button>
+      <ion-button (click)="addCard()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}" -->
+
+  <ion-card [ngStyle]="{height: SCREEN_HEIGHT - 56 - 48 - 25 + 'px'}">
+    <ion-card-header>
+      <ion-card-title>{{ getField('problem') }} </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-header [class]="isShowAnswer == false?'isHide':''">
+      <ion-card-title>{{ getField('answer') }} </ion-card-title>
+    </ion-card-header>
+
+    <div *ngIf="isShowAnswer == false;then showAnswerBtn else showBtns"></div>
+    <ng-template #showAnswerBtn>
+      <ion-button [class]="cardList == null || cardList == [] || cardList.length == 0?'isHide':'btn-position'"
+        (click)="isShowAnswer = true" expand="block" fill="outline" shape="round">
+        显示答案
+      </ion-button>
+    </ng-template>
+    <ng-template #showBtns>
+      <div class="btn-position btns">
+        <ion-button class="forget-btn" expand="block" fill="outline" shape="round" color="danger"
+          (click)="submitCardStatus(false)">
+          遗忘
+        </ion-button>
+        <ion-button class="remember-btn" expand="block" fill="outline" shape="round" color="success"
+          (click)="submitCardStatus(true)">
+          记住
+        </ion-button>
+      </div>
+    </ng-template>
+  </ion-card>
 
 </ion-content>
