@@ -14,12 +14,12 @@ export class MessageService {
    * 显示消息提示框，默认底部
    *
    * @param {string} msg 提示的消息
-   * @param {number} duration 消息显示时长，默认2000ms，即两秒
+   * @param {number} duration 消息显示时长，默认1000ms，即两秒
    * @param {string} color 颜色样式，默认success
    */
   async presentToast(
     msg: string,
-    duration: number = 2000,
+    duration: number = 1000,
     color: string = 'success'
   ) {
     const toast = await this.toastCtrl.create({
