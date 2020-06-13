@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private keyboard: Keyboard,
-    private appMinimize: AppMinimize
+    private appMinimize: AppMinimize,
   ) {
     this.initializeApp()
   }
@@ -61,6 +61,7 @@ export class AppComponent implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault()
+      this.statusBar.styleLightContent()
       this.splashScreen.hide()
 
       this.registerBackButtonAction()
@@ -71,11 +72,17 @@ export class AppComponent implements OnInit {
     this.platform.backButton.subscribe(() => {
       if (this.keyboard.isVisible) {
         return this.keyboard.hide()
-      } else if (/login/.test(location.href) || /folder/.test(location.href)) {
-        return this.appMinimize.minimize()
-      } else {
-        return history.back()
       }
+      
+      if (/login/.test(this.platform.url())) {
+        return this.appMinimize.minimize()
+      }
+      
+      if (/folder/.test(this.platform.url())) {
+        return navigator['app'].exitApp()
+      }
+
+      return history.back()
     })
   }
 
