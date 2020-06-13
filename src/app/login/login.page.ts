@@ -40,11 +40,17 @@ export class LoginPage implements OnInit {
   }
 
   autoLogin() {
+    if(localStorage['username'] == null || localStorage['password'] == null){
+      return
+    }
+    
     this.httpService
       .login(localStorage['username'], localStorage['password'])
       .subscribe((res) => {
         if (res['meta']['status'] == '200') {
           localStorage['userId'] = res['data']['userId']
+
+          this.msgService.presentToast('自动登录成功')
           this.router.navigate(['/v1/folder/my-deck'])
         }
       })
