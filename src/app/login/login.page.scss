@@ -3,7 +3,14 @@
   text-align: center;
   font-size: 35px;
   position: absolute;
-  top: 10%;
+  top: 50px;
+  display: flex;
+  justify-content: center;
+
+  .icon-img{
+    height: 75px;
+    width: 75px;
+  }
 }
 
 .input {
@@ -27,7 +34,7 @@ ion-input {
 
 .input-group {
   position: absolute;
-  top: 20%;
+  top: 150px;
 
   display: flex;
   flex-direction: column;
@@ -44,7 +51,7 @@ ion-input {
   align-items: center;
   justify-content: center;
   left: 50%;
-  top: 55%;
+  top: 320px;
   transform: translate(-50%, 0); // translate中的百分比是相对于自身的宽高的
   background-color: #01cafc;
   border-radius: 50%;
