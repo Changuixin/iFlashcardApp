@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'v1/card/:deckId',
     loadChildren: () => import('./card/card.module').then( m => m.CardPageModule)
   },
+  {
+    path: 'share',
+    loadChildren: () => import('./share/share.module').then( m => m.SharePageModule)
+  },
 ]
 
 @NgModule({
