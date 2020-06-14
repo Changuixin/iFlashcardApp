@@ -1,9 +1,31 @@
-<ion-header>
+<ion-header [translucent]="true" mode='md'>
   <ion-toolbar>
-    <ion-title>help</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>帮助</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card>
+    <div class="center">
+      <ion-img src="../../assets/images/icon-ifc.png"></ion-img>
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>iFlashcard</ion-card-subtitle>
+      <ion-card-title>记忆卡片</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      "flashcard" 也称作"闪卡"、"抽认卡"，常被用于记忆外语词汇、数学公式等简短的知识内容。
+      <br />
+      <br />
+      "iFlashcard" 软件结合了flashcard的优点，将知识体系分为每个短小的知识点，用户可以在挤地铁、等公交、课间休息等空闲时间学习和复习一个个的知识点。
+      <br />
+      <br />
+      与此同时，软件结合了记忆曲线，每张卡片在学习一段时间后，都会重现以便于再次学习，以加深记忆和理解。
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
