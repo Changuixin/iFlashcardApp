@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: '反馈',
-      url: '/folder/feedback',
+      url: 'v1/folder/feedback',
       icon: 'chatbubble',
     },
   ]

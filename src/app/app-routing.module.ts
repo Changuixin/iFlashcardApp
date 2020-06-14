@@ -29,12 +29,16 @@ const routes: Routes = [
     loadChildren: () => import('./statistics/statistics.module').then( m => m.StatisticsPageModule)
   },
   {
-    path: 'v1/card/:deckId',
-    loadChildren: () => import('./card/card.module').then( m => m.CardPageModule)
-  },
-  {
     path: 'v1/folder/help',
     loadChildren: () => import('./help/help.module').then( m => m.HelpPageModule)
+  },
+  {
+    path: 'v1/folder/feedback',
+    loadChildren: () => import('./feedback/feedback.module').then( m => m.FeedbackPageModule)
+  },
+  {
+    path: 'v1/card/:deckId',
+    loadChildren: () => import('./card/card.module').then( m => m.CardPageModule)
   },
 ]
 
