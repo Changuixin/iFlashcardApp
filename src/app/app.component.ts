@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   public others = [
     {
       title: '分享',
-      url: '/folder/share',
+      url: 'v1/folder/share',
       icon: 'share-social',
     },
     {
