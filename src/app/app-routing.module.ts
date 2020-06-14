@@ -32,6 +32,10 @@ const routes: Routes = [
     path: 'v1/card/:deckId',
     loadChildren: () => import('./card/card.module').then( m => m.CardPageModule)
   },
+  {
+    path: 'v1/folder/help',
+    loadChildren: () => import('./help/help.module').then( m => m.HelpPageModule)
+  },
 ]
 
 @NgModule({

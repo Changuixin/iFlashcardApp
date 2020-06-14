@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: '帮助',
-      url: '/folder/help',
+      url: 'v1/folder/help',
       icon: 'help',
     },
     {
