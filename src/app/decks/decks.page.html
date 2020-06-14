@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div class="decks">
     <ion-button mode="md" (click)="flip(deck.deckId)" *ngFor="let deck of commonDeckList" expand="full" fill="clear" class="cell"
       [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}">

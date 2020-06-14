@@ -13,6 +13,10 @@
 </ion-header>
 
 <ion-content id="screen">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div class="decks">
     <ion-button (tap)="learnDeck(deck.deckId)" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
       [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}"

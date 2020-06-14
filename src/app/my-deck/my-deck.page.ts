@@ -37,6 +37,13 @@ export class MyDeckPage implements OnInit {
     this.getDeckList()
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      this.getDeckList()
+      event.target.complete()
+    }, 1000)
+  }
+
   // 获取牌组列表
   getDeckList() {
     this.httpService.getDeckList(localStorage['userId']).subscribe((res) => {

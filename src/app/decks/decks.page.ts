@@ -22,6 +22,13 @@ export class DecksPage implements OnInit {
     this.getDeckList()
   }
 
+  doRefresh(event) {
+    setTimeout(() => {
+      this.getCommonDeckList()
+      event.target.complete()
+    }, 1000)
+  }
+
   // 翻转，如果用户已经收藏，则取消收藏；未收藏，则收藏牌组
   flip(deckId: number) {
     this.httpService.collectDeck(deckId, localStorage['userId']).subscribe(
