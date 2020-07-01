@@ -10,7 +10,7 @@ export class HttpService {
   constructor(private httpClient: HttpClient) {}
 
   /**
-   * 根据用户名和密码进行登录，未注册则自动注册登录
+   * 根据用户名和密码进行登录，未注册则自动注册登录(自动注册功能没实现，差评)
    *
    * @param {string} username
    * @param {string} password
