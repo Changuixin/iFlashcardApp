@@ -23,11 +23,14 @@
     "@ionic-native/app-minimize": "^5.26.0",
     "@ionic-native/core": "^5.0.7",
     "@ionic-native/keyboard": "^5.26.0",
+    "@ionic-native/social-sharing": "^5.27.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "cordova-android": "^7.1.4",
     "cordova-plugin-appminimize": "^1.0.1",
+    "cordova-plugin-x-socialsharing": "^5.6.8",
+    "es6-promise-plugin": "^4.2.2",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
@@ -72,7 +75,10 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-appminimize": {}
+      "cordova-plugin-appminimize": {},
+      "cordova-plugin-x-socialsharing": {
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+      }
     },
     "platforms": [
       "android"
