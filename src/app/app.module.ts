@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http'
 import { Keyboard } from '@ionic-native/keyboard/ngx'
 import { AppMinimize } from '@ionic-native/app-minimize/ngx'
+import { SocialSharing } from '@ionic-native/social-sharing/ngx'
 
 import 'hammerjs'
 
@@ -31,6 +32,7 @@ import 'hammerjs'
     SplashScreen,
     Keyboard,
     AppMinimize,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
