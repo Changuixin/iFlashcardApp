@@ -17,9 +17,7 @@ export class LoginPage implements OnInit {
     public msgService: MessageService,
     public httpService: HttpService
   ) {}
-  ngOnInit(): void {
-    this.autoLogin()
-  }
+  ngOnInit(): void {}
 
   login() {
     if (this.username == null || this.username == '') {
@@ -34,25 +32,10 @@ export class LoginPage implements OnInit {
         localStorage['username'] = this.username
         localStorage['password'] = this.password
         localStorage['userId'] = res['data']['userId']
-        this.router.navigate(['/v1/folder/my-deck'])
+        this.router.navigate(['/v1/folder/my-deck'], {
+          replaceUrl: true,
+        })
       }
     })
-  }
-
-  autoLogin() {
-    if(localStorage['username'] == null || localStorage['password'] == null){
-      return
-    }
-    
-    this.httpService
-      .login(localStorage['username'], localStorage['password'])
-      .subscribe((res) => {
-        if (res['meta']['status'] == '200') {
-          localStorage['userId'] = res['data']['userId']
-
-          this.msgService.presentToast('自动登录成功')
-          this.router.navigate(['/v1/folder/my-deck'])
-        }
-      })
   }
 }
