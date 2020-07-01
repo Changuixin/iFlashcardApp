@@ -13,7 +13,12 @@ export class SharePage implements OnInit {
 
   share() {
     this.socialSharing
-      .share('iFlashcard分享测试')
+      .share(
+        'iFlashcard软件分享',
+        null,
+        null,
+        'http://47.110.159.12/download/img/iFlashcard.apk'
+      )
       .then(() => {
         // Success!
       })
