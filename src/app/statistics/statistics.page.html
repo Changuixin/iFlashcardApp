@@ -7,6 +7,27 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-list>
+    <ion-list-header>
+      当前数据
+    </ion-list-header>
 
+    <ion-item>
+      <ion-label>卡片总数</ion-label>
+      <ion-note slot="end" color="danger">{{ totalCardNumber }}</ion-note>
+    </ion-item>
+
+    <ion-item *ngFor="let deck of deckList">
+      <ion-label>{{deck.deckName}}</ion-label>
+      <div *ngIf="deck.cardTotal == null || deck.cardTotal == 0;then zero else normal"></div>
+    <ng-template #zero>
+      <ion-note slot="end" color="medium">0</ion-note>
+    </ng-template>
+
+    <ng-template #normal>
+      <ion-note slot="end" color="primary">{{ deck.cardTotal }}</ion-note>
+    </ng-template>
+    </ion-item>
+  </ion-list>
 </ion-content>
