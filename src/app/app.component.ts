@@ -79,6 +79,7 @@ export class AppComponent implements OnInit {
       }
       
       if (/folder/.test(this.platform.url())) {
+      // if (/folder\/my-deck/.test(this.platform.url())) {
         return navigator['app'].exitApp()
       }
 
