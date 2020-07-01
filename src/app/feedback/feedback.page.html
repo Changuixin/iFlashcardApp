@@ -3,10 +3,29 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>feedback</ion-title>
+    <ion-title>反馈</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-list-header>
+    发送一封邮件给开发者改进app！
+  </ion-list-header>
+
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">标题</ion-label>
+        <ion-input [(ngModel)]="subject"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">正文</ion-label>
+        <ion-textarea auto-grow="true" [(ngModel)]="body"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" class="ion-no-margin" (click)="sendEmail()">发送</ion-button>
+    </div>
 
 </ion-content>
