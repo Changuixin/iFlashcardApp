@@ -30,11 +30,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'v1/folder/share',
-    loadChildren: () =>
-      import('./share/share.module').then((m) => m.SharePageModule),
-  },
-  {
     path: 'v1/folder/feedback',
     loadChildren: () =>
       import('./feedback/feedback.module').then((m) => m.FeedbackPageModule),
