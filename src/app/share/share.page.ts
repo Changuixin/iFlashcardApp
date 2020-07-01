@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { SocialSharing } from '@ionic-native/social-sharing/ngx'
 
 @Component({
   selector: 'app-share',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./share.page.scss'],
 })
 export class SharePage implements OnInit {
+  constructor(private socialSharing: SocialSharing) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  share() {
+    this.socialSharing
+      .share('iFlashcard分享测试')
+      .then(() => {
+        // Success!
+      })
+      .catch(() => {
+        // Error!
+      })
   }
-
 }

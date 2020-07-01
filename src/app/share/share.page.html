@@ -1,12 +1,14 @@
-<ion-header [translucent]="true" mode='md'>
+<ion-header [translucent]="true" mode="md">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>share</ion-title>
+    <ion-title>分享</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-button (click)="share()" expand="block" shape="round" class="share">
+    测试分享
+  </ion-button>
 </ion-content>
