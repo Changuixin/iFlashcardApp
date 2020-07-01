@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router'
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'v1/login',
+    redirectTo: 'v1/folder/my-deck',
     pathMatch: 'full',
   },
   {
