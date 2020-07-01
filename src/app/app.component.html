@@ -29,6 +29,17 @@
         </ion-list>
 
         <ion-list id="others-list">
+          <ion-menu-toggle auto-hide="false">
+            <ion-item (click)="share()" lines="none">
+              <ion-icon
+                slot="start"
+                [ios]="'share-social-outline'"
+                [md]="'share-social-sharp'"
+              ></ion-icon>
+              <ion-label>分享</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
           <ion-menu-toggle
             auto-hide="false"
             *ngFor="let p of others; let i = index"
@@ -47,6 +58,19 @@
                 [md]="p.icon + '-sharp'"
               ></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+        <ion-list id="logout-list">
+          <ion-menu-toggle auto-hide="false">
+            <ion-item (click)="logout()" lines="none">
+              <ion-icon
+                slot="start"
+                ios="log-out-outline"
+                md="log-out-sharp"
+              ></ion-icon>
+              <ion-label>退出</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

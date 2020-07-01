@@ -5,6 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx'
 import { StatusBar } from '@ionic-native/status-bar/ngx'
 import { Keyboard } from '@ionic-native/keyboard/ngx'
 import { AppMinimize } from '@ionic-native/app-minimize/ngx'
+import { HttpService } from './service/http.service'
+import { Router } from '@angular/router'
+import { MessageService } from './service/message.service'
+import { SocialSharing } from '@ionic-native/social-sharing/ngx'
 
 @Component({
   selector: 'app-root',
@@ -32,11 +36,6 @@ export class AppComponent implements OnInit {
   ]
   public others = [
     {
-      title: '分享',
-      url: 'v1/folder/share',
-      icon: 'share-social',
-    },
-    {
       title: '帮助',
       url: 'v1/folder/help',
       icon: 'help',
@@ -54,6 +53,10 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private keyboard: Keyboard,
     private appMinimize: AppMinimize,
+    private httpService: HttpService,
+    private router: Router,
+    private msgService: MessageService,
+    private socialSharing: SocialSharing,
   ) {
     this.initializeApp()
   }
@@ -66,6 +69,62 @@ export class AppComponent implements OnInit {
 
       this.registerBackButtonAction()
     })
+    this.autoLogin()
+  }
+
+  share() {
+    this.socialSharing
+      .share(
+        'iFlashcard软件分享',
+        null,
+        null,
+        'http://47.110.159.12/download/img/iFlashcard.apk'
+      )
+      .then(() => {
+        // Success!
+      })
+      .catch(() => {
+        // Error!
+      })
+  }
+
+  logout(){
+    localStorage.removeItem('username')
+    localStorage.removeItem('password')
+    this.router.navigateByUrl('/v1/login', {
+      replaceUrl: true,
+    })
+  }
+
+  autoLogin() {
+    if (localStorage['username'] == null || localStorage['password'] == null) {
+      return this.router.navigateByUrl('/v1/login', {
+        replaceUrl: true,
+      })
+    }
+
+    this.httpService
+      .login(localStorage['username'], localStorage['password'])
+      .subscribe(
+        (res) => {
+          if (res['meta']['status'] == '200') {
+            localStorage['userId'] = res['data']['userId']
+
+            this.msgService.presentToast('自动登录成功')
+            return this.router.navigate(['/v1/folder/my-deck'], {
+              replaceUrl: true,
+            })
+          }
+          return this.router.navigateByUrl('/v1/login', {
+            replaceUrl: true,
+          })
+        },
+        (err) => {
+          return this.router.navigateByUrl('/v1/login', {
+            replaceUrl: true,
+          })
+        }
+      )
   }
 
   registerBackButtonAction() {
@@ -73,14 +132,13 @@ export class AppComponent implements OnInit {
       if (this.keyboard.isVisible) {
         return this.keyboard.hide()
       }
-      
+
       if (/login/.test(this.platform.url())) {
         return this.appMinimize.minimize()
       }
-      
+
       if (/folder/.test(this.platform.url())) {
-      // if (/folder\/my-deck/.test(this.platform.url())) {
-        return navigator['app'].exitApp()
+        return this.appMinimize.minimize()
       }
 
       return history.back()

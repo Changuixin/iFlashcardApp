@@ -22,6 +22,7 @@ import 'hammerjs'
     BrowserModule,
     IonicModule.forRoot({
       mode: 'ios',
+      // animated: false,
     }),
     AppRoutingModule,
     HttpClientModule,
