@@ -17,9 +17,9 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div class="decks">
+  <div id="decks">
     <ion-button (tap)="learnDeck(deck.deckId)" *ngFor="let deck of deckList" expand="full" fill="clear" class="cell"
-      [ngStyle]="{'width': SCREEN_WIDTH/COL_NUM + 'px', 'height': SCREEN_WIDTH/COL_NUM + 'px'}"
+      [ngStyle]="{'height': SCREEN_WIDTH/COL_NUM + 'px'}"
       (press)="deckMenu(deck.deckId, deck.deckName)" mode="md">
       {{ deck.deckName }}
     </ion-button>

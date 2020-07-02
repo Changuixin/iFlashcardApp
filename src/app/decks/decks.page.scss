@@ -1,8 +1,7 @@
 .decks{
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
 }
 
 .cell{
