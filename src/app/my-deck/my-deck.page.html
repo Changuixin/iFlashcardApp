@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content id="screen">
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pull-min="120" pull-max="120">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 

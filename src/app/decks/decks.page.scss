@@ -1,22 +1,28 @@
-#decks{
+#decks {
   width: 100%;
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.33%;
 }
 
-.cell{
+.cell {
   border: 1px solid #eeeeee;
   border-left: none;
   border-top: none;
 }
 
-ion-button{
+#decks :nth-child(1),
+#decks :nth-child(2),
+#decks :nth-child(3) {
+  border-top: 1px solid #eeeeee;
+}
+
+ion-button {
   margin: 0;
   padding: 0;
   font-size: 16px;
 }
 
-.icon{
+.icon {
   position: absolute;
   bottom: 20%;
 }
