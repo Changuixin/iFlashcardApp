@@ -57,7 +57,7 @@ export class CardPage implements OnInit {
         // 检索出需要复习的卡片
         let cardList = []
         for (let i = 0; i < resCardList.length; i++) {
-          if (resCardList[i].lastReview == null) {
+          if (resCardList[i].lastReview == null || resCardList[i].flag == false) {
             cardList.push(resCardList[i])
           } else {
             let reviewDay = new Date(resCardList[i].lastReview)
@@ -74,12 +74,16 @@ export class CardPage implements OnInit {
         this.position = 0
         console.log(this.cardList)
 
+        if(resCardList.length == null || resCardList == []){
+          return this.msgService.presentToast('当前牌组没有待学习的卡片')
+        }
+        
         if (
           this.cardList == null ||
           this.cardList.length == 0 ||
           this.cardList == []
         ) {
-          return this.msgService.presentToast('当前牌组没有待学习的卡片')
+          return this.msgService.presentToast('已学习完所有卡片！')
         }
       }
     })

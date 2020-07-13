@@ -73,6 +73,10 @@ export class MyDeckPage implements OnInit {
               '修改牌组',
               '请输入牌组名称',
               (res) => {
+                if(res.data == null || res.data.length == 0){
+                  return this.msgService.presentToast('修改失败，请输入有效字符！', 2000, 'danger')
+                }
+
                 let newDeckName = res.data
                 this.modifyDeck(deckId, newDeckName)
               },
@@ -95,6 +99,9 @@ export class MyDeckPage implements OnInit {
   // 添加牌组
   addDeck() {
     this.msgService.presentAlertPrompt('添加牌组', '请输入牌组名称', (res) => {
+      if(res.data == null || res.data.length == 0){
+        return this.msgService.presentToast('添加失败，请输入有效字符！', 2000, 'danger')
+      }
       let deckName = res.data
 
       this.httpService.addDeck(deckName).subscribe(
